@@ -8,6 +8,7 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import com.maxdexter.studentsdatabase.data.Email;
 import com.maxdexter.studentsdatabase.data.Student;
 
 import java.util.List;
@@ -50,4 +51,12 @@ public interface EducationDao {
     //Получаем количество записей в таблице
     @Query("SELECT COUNT() FROM student")
     long getCountStudents();
+
+    // Получаем почту одного студента
+    @Query("SELECT * FROM email WHERE student_id = :studentId")
+    List<Email> getEmailByStudent(long studentId);
+
+    // Добавляем запись в таблицу адресов
+    @Insert
+    long insertEmail(Email email);
 }
